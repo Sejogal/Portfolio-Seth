@@ -1,9 +1,9 @@
 //
-function iniciaSom(){
-    let audio = document.getElementById("audio");
-    audio.play();
-}
-iniciaSom();
+// function iniciaSom(){
+//     let audio = document.getElementById("audio");
+//     audio.play();
+// }
+// iniciaSom();
 
 //
 const textWelcome = "Olá meu nome é Seth Lussueki Bem vindo ao meu PORTFÓLIO"
