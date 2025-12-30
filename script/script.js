@@ -285,3 +285,13 @@ window.addEventListener('load', () => {
         element.textContent = currentYear;
     });
 });
+
+
+function sendEmail (){
+    const nome = document.getElementById('nomeSms').value;
+    const email = document.getElementById('emailSms').value;
+    const sms = document.getElementById('smsSms').value;
+
+
+    alert('Obrigado pelo Feedback, '+ nome);
+}
