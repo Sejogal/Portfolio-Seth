@@ -802,6 +802,16 @@ h1, h2, h3, h4 {
 }
 
 /* Responsive Styles */
+
+
+
+
+
+/* Adicione estas regras ao seu arquivo CSS existente */
+
+/* Atualize as media queries para telas menores */
+
+/* Para tablets (768px a 992px) */
 @media (max-width: 992px) {
     .hero {
         flex-direction: column;
@@ -825,8 +835,19 @@ h1, h2, h3, h4 {
     .section-title {
         font-size: 2.2rem;
     }
+    
+    /* Ajuste para skills em tablets */
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .contact-info {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
+/* Para dispositivos móveis (576px a 768px) */
 @media (max-width: 768px) {
     .menu-toggle {
         display: flex;
@@ -871,23 +892,45 @@ h1, h2, h3, h4 {
         font-size: 1.5rem;
     }
     
+    /* CORREÇÃO: Mostrar skills em 1 coluna em tablets */
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .skill-card {
+        padding: 20px;
+    }
+    
     .projects-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
     
     .contact-content {
         grid-template-columns: 1fr;
+        gap: 30px;
     }
 }
 
+/* Para dispositivos móveis pequenos (até 576px) */
 @media (max-width: 576px) {
     .hero-title {
         font-size: 2.3rem;
     }
     
+    .hero-role {
+        font-size: 1.3rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 15px;
     }
     
     .btn {
@@ -896,11 +939,122 @@ h1, h2, h3, h4 {
         text-align: center;
     }
     
+    /* CORREÇÃO: Garantir que skills apareçam em 1 coluna */
     .skills-grid {
         grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .skill-card {
+        margin: 0;
+        padding: 15px;
+    }
+    
+    /* Ajuste das informações de contato */
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .info-card {
+        padding: 20px;
     }
     
     .section {
-        padding: 60px 0;
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .image-wrapper {
+        width: 250px;
+        height: 250px;
+    }
+    
+    /* Ajuste do scroll indicator */
+    .scroll-indicator {
+        bottom: 20px;
+        font-size: 0.8rem;
+    }
+    
+    .mouse {
+        width: 25px;
+        height: 40px;
+    }
+}
+
+/* Para dispositivos muito pequenos (até 400px) */
+@media (max-width: 400px) {
+    .hero-title {
+        font-size: 2rem;
+    }
+    
+    .hero-role {
+        font-size: 1.2rem;
+    }
+    
+    .image-wrapper {
+        width: 200px;
+        height: 200px;
+    }
+    
+    .floating-element {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+    
+    .skill-card h3 {
+        font-size: 1.3rem;
+    }
+    
+    .project-content h3 {
+        font-size: 1.3rem;
+    }
+    
+    .nav-container {
+        padding: 15px;
+    }
+    
+    .logo {
+        font-size: 1.5rem;
+    }
+}
+
+/* Adicione esta classe para debug se necessário */
+.debug-skill {
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+/* Se ainda estiver com problemas, force a exibição com estas regras */
+@media (max-width: 768px) {
+    /* Garante que o container das skills seja visível */
+    .skills-section {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Força a exibição do grid de skills */
+    .skills-grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    /* Força a exibição de cada skill card */
+    .skill-card {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
