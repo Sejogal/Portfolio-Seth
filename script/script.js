@@ -293,5 +293,11 @@ function sendEmail (){
     const sms = document.getElementById('smsSms').value;
 
 
-    alert('Obrigado pelo Feedback, '+ nome);
+    if(!nome || !email || !sms){
+        alert('Por favor, preencha todos os campos antes de enviar a mensagem.');
+        return;
+    }
+    else{
+        alert('Obrigado pela mensagem, '+ nome);
+    }
 }
