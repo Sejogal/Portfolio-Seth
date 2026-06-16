@@ -10,7 +10,7 @@ const sections = document.querySelectorAll('section');
 // Dark/Light Mode Toggle
 themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('dark-mode');
-    
+
     const icon = themeToggle.querySelector('i');
     if (document.body.classList.contains('dark-mode')) {
         icon.classList.remove('fa-moon');
@@ -27,7 +27,7 @@ themeToggle.addEventListener('click', () => {
 window.addEventListener('DOMContentLoaded', () => {
     const savedTheme = localStorage.getItem('theme');
     const themeIcon = themeToggle.querySelector('i');
-    
+
     if (savedTheme === 'dark') {
         document.body.classList.add('dark-mode');
         themeIcon.classList.remove('fa-moon');
@@ -38,7 +38,7 @@ window.addEventListener('DOMContentLoaded', () => {
 // Mobile Menu Toggle
 menuToggle.addEventListener('click', () => {
     navLinks.classList.toggle('active');
-    
+
     const icon = menuToggle.querySelector('i');
     if (navLinks.classList.contains('active')) {
         icon.classList.remove('fa-bars');
@@ -65,7 +65,7 @@ window.addEventListener('scroll', () => {
     } else {
         backToTop.classList.remove('visible');
     }
-    
+
     // Update active nav link based on scroll position
     updateActiveNavLink();
 });
@@ -80,16 +80,16 @@ backToTop.addEventListener('click', () => {
 // Update active navigation link based on scroll position
 function updateActiveNavLink() {
     let current = '';
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        
+
         if (scrollY >= (sectionTop - 200)) {
             current = section.getAttribute('id');
         }
     });
-    
+
     navLinksItems.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
@@ -102,7 +102,7 @@ function updateActiveNavLink() {
 function typeWriter(element, text, speed = 50) {
     let i = 0;
     element.innerHTML = '';
-    
+
     function type() {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
@@ -110,7 +110,7 @@ function typeWriter(element, text, speed = 50) {
             setTimeout(type, speed);
         }
     }
-    
+
     type();
 }
 
@@ -123,25 +123,25 @@ if (welcomeElement) {
 // Form submission handling
 const contactForm = document.querySelector('.contact-form');
 if (contactForm) {
-    contactForm.addEventListener('submit', function(e) {
+    contactForm.addEventListener('submit', function (e) {
         e.preventDefault();
-        
+
         // Get form data
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
-        
+
         // Simple validation
         if (!data.name || !data.email || !data.message) {
             alert('Please fill in all fields');
             return;
         }
-        
+
         // In a real application, you would send this data to a server
         console.log('Form submitted:', data);
-        
+
         // Show success message
         alert('Thank you for your message! I will get back to you soon.');
-        
+
         // Reset form
         this.reset();
     });
@@ -163,7 +163,7 @@ const observer = new IntersectionObserver((entries) => {
                     card.style.transform = 'translateY(0)';
                 }, index * 100);
             });
-            
+
             // Animate progress bars
             const progressBars = entry.target.querySelectorAll('.level-progress');
             progressBars.forEach(bar => {
@@ -215,7 +215,7 @@ document.addEventListener('click', () => {
         audio.volume = 0.3;
         audio.play().catch(e => console.log("Audio blocked by browser policy"));
         isPlaying = true;
-        
+
         // Remove the event listener after first interaction
         document.removeEventListener('click', arguments.callee);
     }
@@ -223,12 +223,12 @@ document.addEventListener('click', () => {
 
 // Smooth scrolling for all anchor links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
+    anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        
+
         const targetId = this.getAttribute('href');
         if (targetId === '#') return;
-        
+
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
             window.scrollTo({
@@ -241,11 +241,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Add hover effect to project cards
 document.querySelectorAll('.project-card').forEach(card => {
-    card.addEventListener('mouseenter', function() {
+    card.addEventListener('mouseenter', function () {
         this.style.transform = 'translateY(-10px) scale(1.02)';
     });
-    
-    card.addEventListener('mouseleave', function() {
+
+    card.addEventListener('mouseleave', function () {
         this.style.transform = 'translateY(0) scale(1)';
     });
 });
@@ -257,27 +257,27 @@ window.addEventListener('load', () => {
     if (heroContent) {
         heroContent.style.opacity = '0';
         heroContent.style.transform = 'translateY(20px)';
-        
+
         setTimeout(() => {
             heroContent.style.transition = 'opacity 1s ease, transform 1s ease';
             heroContent.style.opacity = '1';
             heroContent.style.transform = 'translateY(0)';
         }, 300);
     }
-    
+
     // Add animation to hero image
     const heroImage = document.querySelector('.hero-image img');
     if (heroImage) {
         heroImage.style.opacity = '0';
         heroImage.style.transform = 'scale(0.8)';
-        
+
         setTimeout(() => {
             heroImage.style.transition = 'opacity 1s ease 0.3s, transform 1s ease 0.3s';
             heroImage.style.opacity = '1';
             heroImage.style.transform = 'scale(1)';
         }, 300);
     }
-    
+
     // Update current year in footer
     const currentYear = new Date().getFullYear();
     const yearElements = document.querySelectorAll('.current-year');
@@ -287,17 +287,34 @@ window.addEventListener('load', () => {
 });
 
 
-function sendEmail (){
-    const nome = document.getElementById('nomeSms').value;
-    const email = document.getElementById('emailSms').value;
-    const sms = document.getElementById('smsSms').value;
+function sendEmail() {
 
+        let nome = document.getElementById("nomeSms").value;
+        let email = document.getElementById("emailSms").value;
+        let texto = document.getElementById("smsSms").value;
 
-    if(!nome || !email || !sms){
-        alert('Por favor, preencha todos os campos antes de enviar a mensagem.');
-        return;
+        fetch("https://api-portfolio-bygb.onrender.com/formulario/enviar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ nome, email, texto })
+        })
+        .then(async (response) => {
+
+            if (response.ok) {
+                const data = await response.json();
+                alert("Mensagem enviada com sucesso!");
+                console.log("SUCESSO:", data);
+            } else {
+                const error = await response.text();
+                alert("Erro ao enviar mensagem!");
+                console.log("ERRO:", error);
+            }
+
+        })
+        .catch(error => {
+            alert("Erro de conexão com o servidor!");
+            console.error(error);
+        });
     }
-    else{
-        alert('Obrigado pela mensagem, '+ nome);
-    }
-}
